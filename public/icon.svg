@@ -1,0 +1,36 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @media (prefers-color-scheme: light) {
+      .background { fill: #1e40af; }
+      .foreground { fill: white; }
+      .accent { fill: #fbbf24; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .background { fill: #1e3a8a; }
+      .foreground { fill: white; }
+      .accent { fill: #fbbf24; }
+    }
+  </style>
+  <rect class="background" width="180" height="180" rx="37" />
+
+  <!-- Diseño inspirado en patrones Wayuu -->
+  <g transform="translate(90, 90)">
+    <!-- Círculo central -->
+    <circle class="accent" cx="0" cy="0" r="25" />
+
+    <!-- Patrones geométricos Wayuu -->
+    <path class="foreground" d="M 0,-45 L 12,-25 L -12,-25 Z" />
+    <path class="foreground" d="M 45,0 L 25,12 L 25,-12 Z" />
+    <path class="foreground" d="M 0,45 L -12,25 L 12,25 Z" />
+    <path class="foreground" d="M -45,0 L -25,-12 L -25,12 Z" />
+
+    <!-- Diamantes en las esquinas -->
+    <path class="foreground" d="M 32,-32 L 40,-32 L 36,-28 L 32,-32 Z" />
+    <path class="foreground" d="M 32,32 L 40,32 L 36,36 L 32,32 Z" />
+    <path class="foreground" d="M -32,32 L -40,32 L -36,36 L -32,32 Z" />
+    <path class="foreground" d="M -32,-32 L -40,-32 L -36,-28 L -32,-32 Z" />
+
+    <!-- Letras DEM en el centro -->
+    <text class="background" x="0" y="8" font-size="24" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif">DEM</text>
+  </g>
+</svg>
