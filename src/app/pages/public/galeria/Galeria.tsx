@@ -7,6 +7,7 @@ import { Calendar, ChevronLeft, ChevronRight, ImageIcon } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { galeriasApi, type Galeria } from "@/api/galerias"
 import { getStorageUrl } from "@/lib/storage"
+import { NavLink } from "react-router"
 
 const ITEMS_PER_PAGE = 6
 
@@ -154,11 +155,11 @@ export default function GaleriasPage() {
                                 <CardDescription className="text-pretty">{gallery.subtitulo}</CardDescription>
                             </CardHeader>
                             <CardContent className="flex-1 flex flex-col">
-                                <a href={`/galerias/${gallery.id}`} className="mt-auto">
+                                <NavLink to={`/galerias/${gallery.id}`} className="mt-auto">
                                     <Button variant="outline" className="w-full cursor-pointer bg-transparent">
                                         Ver galería
                                     </Button>
-                                </a>
+                                </NavLink>
                             </CardContent>
                         </Card>
                     ))}

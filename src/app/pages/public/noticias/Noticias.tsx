@@ -5,6 +5,7 @@ import { Calendar, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { noticiasApi, type Noticia } from '@/api/noticias'
 import { getStorageUrl } from '@/lib/storage'
+import { useParams } from 'react-router'
 
 export default function NewsDetailPage() {
     const [noticia, setNoticia] = useState<Noticia | null>(null)
@@ -12,13 +13,16 @@ export default function NewsDetailPage() {
     const [error, setError] = useState<string | null>(null)
     const [noticiaId, setNoticiaId] = useState<number | null>(null)
 
+
+    const { id } = useParams()
+
     // Obtener el ID de la URL usando JavaScript puro (React)
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const path = window.location.pathname
-            const parts = path.split('/')
-            const id = parts[parts.length - 1]
-            const parsedId = parseInt(id)
+            // const parts = path.split('/')
+            // const id = parts[parts.length - 1]
+            const parsedId = parseInt(id!)
 
             console.log('URL path:', path)
             console.log('Extracted ID:', parsedId)

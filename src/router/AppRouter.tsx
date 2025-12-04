@@ -11,6 +11,7 @@ const ProcesosPage = lazy(() => import("@/app/pages/public/procesos/Procesos"));
 const GaleriaPage = lazy(() => import("@/app/pages/public/galeria/Galeria"));
 const NosotrosPage = lazy(() => import("@/app/pages/public/nosotros/Nosotros"));
 const NoticiasPage = lazy(() => import("@/app/pages/public/noticias/Noticias"));
+const GaleriaDetallePage = lazy(() => import("@/app/pages/public/galeria/GaleriaDetalle"));
 
 
 export const AppRouter = () => {
@@ -37,7 +38,7 @@ export const AppRouter = () => {
               <NosotrosPage />
             </Suspense>
           } />
-          <Route path="/noticias" element={
+          <Route path="/noticias/:id" element={
             <Suspense fallback={<Loading />}>
               <NoticiasPage />
             </Suspense>
@@ -45,6 +46,11 @@ export const AppRouter = () => {
           <Route path="/galerias" element={
             <Suspense fallback={<Loading />}>
               <GaleriaPage />
+            </Suspense>
+          } />
+          <Route path="/galerias/:id" element={
+            <Suspense fallback={<Loading />}>
+              <GaleriaDetallePage />
             </Suspense>
           } />
         </Route>
