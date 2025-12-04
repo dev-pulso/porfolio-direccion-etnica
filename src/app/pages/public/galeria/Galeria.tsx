@@ -17,6 +17,8 @@ export default function GaleriasPage() {
     const [currentPage, setCurrentPage] = useState(1)
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
+    const [appliedStartDate, setAppliedStartDate] = useState("")
+    const [appliedEndDate, setAppliedEndDate] = useState("")
 
     useEffect(() => {
         const fetchGalerias = async () => {
@@ -36,23 +38,33 @@ export default function GaleriasPage() {
     const filteredGalleries = useMemo(() => {
         let filtered = galerias
 
-        if (startDate || endDate) {
+        if (appliedStartDate || appliedEndDate) {
             filtered = filtered.filter((gallery) => {
                 const galleryDate = new Date(gallery.fecha)
-                const start = startDate ? new Date(startDate) : new Date("2000-01-01")
-                const end = endDate ? new Date(endDate) : new Date("2100-12-31")
+                const start = appliedStartDate ? new Date(appliedStartDate) : new Date("2000-01-01")
+                const end = appliedEndDate ? new Date(appliedEndDate) : new Date("2100-12-31")
                 return galleryDate >= start && galleryDate <= end
             })
         }
 
         return filtered
-    }, [galerias, startDate, endDate])
+    }, [galerias, appliedStartDate, appliedEndDate])
 
     const totalPages = Math.ceil(filteredGalleries.length / ITEMS_PER_PAGE)
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
     const paginatedGalleries = filteredGalleries.slice(startIndex, startIndex + ITEMS_PER_PAGE)
 
-    const handleDateChange = () => {
+    const handleApplyFilter = () => {
+        setAppliedStartDate(startDate)
+        setAppliedEndDate(endDate)
+        setCurrentPage(1)
+    }
+
+    const handleClearFilters = () => {
+        setStartDate("")
+        setEndDate("")
+        setAppliedStartDate("")
+        setAppliedEndDate("")
         setCurrentPage(1)
     }
 
@@ -92,10 +104,7 @@ export default function GaleriasPage() {
                         <Input
                             type="date"
                             value={startDate}
-                            onChange={(e) => {
-                                setStartDate(e.target.value)
-                                handleDateChange()
-                            }}
+                            onChange={(e) => setStartDate(e.target.value)}
                             className="w-auto"
                         />
                     </div>
@@ -104,21 +113,20 @@ export default function GaleriasPage() {
                         <Input
                             type="date"
                             value={endDate}
-                            onChange={(e) => {
-                                setEndDate(e.target.value)
-                                handleDateChange()
-                            }}
+                            onChange={(e) => setEndDate(e.target.value)}
                             className="w-auto"
                         />
                     </div>
-                    {(startDate || endDate) && (
+                    <Button
+                        onClick={handleApplyFilter}
+                        disabled={!startDate && !endDate}
+                    >
+                        Filtrar
+                    </Button>
+                    {(appliedStartDate || appliedEndDate) && (
                         <Button
                             variant="outline"
-                            onClick={() => {
-                                setStartDate("")
-                                setEndDate("")
-                                setCurrentPage(1)
-                            }}
+                            onClick={handleClearFilters}
                         >
                             Limpiar filtros
                         </Button>

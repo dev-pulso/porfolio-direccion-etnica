@@ -15,6 +15,8 @@ export default function ProcesosPage() {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [currentPage, setCurrentPage] = useState(1)
+    const [tempStartDate, setTempStartDate] = useState('')
+    const [tempEndDate, setTempEndDate] = useState('')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
 
@@ -56,7 +58,17 @@ export default function ProcesosPage() {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
     const paginatedNews = filteredNews.slice(startIndex, startIndex + ITEMS_PER_PAGE)
 
-    const handleDateChange = () => {
+    const handleFilter = () => {
+        setStartDate(tempStartDate)
+        setEndDate(tempEndDate)
+        setCurrentPage(1)
+    }
+
+    const handleClearFilters = () => {
+        setTempStartDate('')
+        setTempEndDate('')
+        setStartDate('')
+        setEndDate('')
         setCurrentPage(1)
     }
 
@@ -113,11 +125,8 @@ export default function ProcesosPage() {
                         <label className="text-sm font-medium">Desde:</label>
                         <Input
                             type="date"
-                            value={startDate}
-                            onChange={(e) => {
-                                setStartDate(e.target.value)
-                                handleDateChange()
-                            }}
+                            value={tempStartDate}
+                            onChange={(e) => setTempStartDate(e.target.value)}
                             className="w-auto"
                         />
                     </div>
@@ -125,22 +134,21 @@ export default function ProcesosPage() {
                         <label className="text-sm font-medium">Hasta:</label>
                         <Input
                             type="date"
-                            value={endDate}
-                            onChange={(e) => {
-                                setEndDate(e.target.value)
-                                handleDateChange()
-                            }}
+                            value={tempEndDate}
+                            onChange={(e) => setTempEndDate(e.target.value)}
                             className="w-auto"
                         />
                     </div>
+                    <Button
+                        onClick={handleFilter}
+                        disabled={!tempStartDate && !tempEndDate}
+                    >
+                        Filtrar
+                    </Button>
                     {(startDate || endDate) && (
                         <Button
                             variant="outline"
-                            onClick={() => {
-                                setStartDate('')
-                                setEndDate('')
-                                setCurrentPage(1)
-                            }}
+                            onClick={handleClearFilters}
                         >
                             Limpiar filtros
                         </Button>
