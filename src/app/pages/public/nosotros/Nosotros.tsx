@@ -242,9 +242,14 @@ export default function NosotrosPage() {
                             <div className="space-y-6">
                                 <div className="flex items-start gap-4">
                                     <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                                        <img
+                                        {/* <img
                                             src="/director-photo.jpg"
                                             alt="Juan Carlos Apshana Jusayu"
+                                            className="w-full h-full object-cover"
+                                        /> */}
+                                        <img
+                                            src="/secretary-photo.jpg"
+                                            alt="Omar Antonio Santiago Silvero"
                                             className="w-full h-full object-cover"
                                         />
                                     </div>
@@ -261,9 +266,14 @@ export default function NosotrosPage() {
                                 </div>
                                 <div className="border-t pt-4 flex items-start gap-4">
                                     <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                                        <img
+                                        {/* <img
                                             src="/secretary-photo.jpg"
                                             alt="Omar Antonio Santiago Silvero"
+                                            className="w-full h-full object-cover"
+                                        /> */}
+                                        <img
+                                            src="/director-photo.jpg"
+                                            alt="Juan Carlos Apshana Jusayu"
                                             className="w-full h-full object-cover"
                                         />
                                     </div>
