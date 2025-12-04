@@ -8,12 +8,16 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { MapPin, Send } from 'lucide-react'
 import { empresaApi, type Empresa } from '@/api/empresa'
+import { contactosApi, type ContactoFormData } from '@/api/contactos'
+import { toast } from 'sonner'
 
 export function ContactSection() {
-    const [formData, setFormData] = useState({
-        name: '',
+    const [formData, setFormData] = useState<ContactoFormData>({
+        nombre: '',
         email: '',
-        message: ''
+        telefono: '',
+        celular: '',
+        mensaje: ''
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [empresa, setEmpresa] = useState<Empresa | null>(null)
@@ -37,11 +41,17 @@ export function ContactSection() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsSubmitting(true)
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        alert('Mensaje enviado exitosamente. Nos pondremos en contacto pronto.')
-        setFormData({ name: '', email: '', message: '' })
-        setIsSubmitting(false)
+
+        try {
+            const response = await contactosApi.enviarMensaje(formData)
+            toast.success(response.message)
+            setFormData({ nombre: '', email: '', telefono: '', celular: '', mensaje: '' })
+        } catch (error) {
+            console.error('Error al enviar mensaje:', error)
+            toast.error('Error al enviar el mensaje. Por favor intenta de nuevo.')
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     if (loading) {
@@ -135,12 +145,12 @@ export function ContactSection() {
                             )}
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="name">Nombre completo</Label>
+                                    <Label htmlFor="nombre">Nombre completo</Label>
                                     <Input
-                                        id="name"
+                                        id="nombre"
                                         placeholder="Tu nombre"
-                                        value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        value={formData.nombre}
+                                        onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
                                         required
                                     />
                                 </div>
@@ -155,14 +165,36 @@ export function ContactSection() {
                                         required
                                     />
                                 </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="telefono">Teléfono</Label>
+                                        <Input
+                                            id="telefono"
+                                            type="tel"
+                                            placeholder="Teléfono (opcional)"
+                                            value={formData.telefono}
+                                            onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="celular">Celular</Label>
+                                        <Input
+                                            id="celular"
+                                            type="tel"
+                                            placeholder="Celular (opcional)"
+                                            value={formData.celular}
+                                            onChange={(e) => setFormData({ ...formData, celular: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="message">Mensaje</Label>
+                                    <Label htmlFor="mensaje">Mensaje</Label>
                                     <Textarea
-                                        id="message"
+                                        id="mensaje"
                                         placeholder="Escribe tu consulta aquí..."
                                         rows={5}
-                                        value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                        value={formData.mensaje}
+                                        onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
                                         required
                                     />
                                 </div>

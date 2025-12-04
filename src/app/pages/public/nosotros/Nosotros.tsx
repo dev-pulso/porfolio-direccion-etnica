@@ -243,7 +243,7 @@ export default function NosotrosPage() {
                                 <div className="flex items-start gap-4">
                                     <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                         <img
-                                            src="/director-photo.jpg"
+                                            src="/secretary-photo.jpg"
                                             alt="Juan Carlos Apshana Jusayu"
                                             className="w-full h-full object-cover"
                                         />
@@ -262,7 +262,7 @@ export default function NosotrosPage() {
                                 <div className="border-t pt-4 flex items-start gap-4">
                                     <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
                                         <img
-                                            src="/secretary-photo.jpg"
+                                            src="/director-photo.jpg"
                                             alt="Omar Antonio Santiago Silvero"
                                             className="w-full h-full object-cover"
                                         />
