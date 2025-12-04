@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react"
 import { Link } from "react-router"
 import { Avatar } from "@radix-ui/react-avatar"
 import { AvatarFallback, AvatarImage } from "./ui/avatar"
-import Logo from '@public/icon.svg'
+import Logo from '@public/logo.png'
 
 export function Navigation() {
     const [isOpen, setIsOpen] = useState(false)
@@ -25,11 +25,8 @@ export function Navigation() {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link to="/" className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-                            <Avatar>
-                                <AvatarImage src={Logo} />
-                                <AvatarFallback>DE</AvatarFallback>
-                            </Avatar>
+                        <div className="w-10 h-10  rounded-full flex items-center justify-center">
+                            <img src={Logo} alt="Logo" className="w-full h-full object-cover" />
                         </div>
                         <div className="hidden md:block">
                             <div className="text-lg font-bold leading-tight">Dirección Étnica</div>

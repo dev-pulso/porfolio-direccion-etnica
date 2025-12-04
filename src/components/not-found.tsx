@@ -1,4 +1,4 @@
-import { ShoppingCart, Home, ArrowLeft, Search } from "lucide-react";
+import { Home, ArrowLeft, Search, Landmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 
@@ -8,14 +8,15 @@ export default function NotFoundPage() {
       {/* Logo */}
       <div className="flex items-center gap-3 mb-12">
         <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
-          <ShoppingCart className="w-6 h-6 text-primary-foreground" />
+          <Landmark className="w-7 h-7 text-primary-foreground" />
+
         </div>
         <div>
           <h1 className="text-xl font-bold text-foreground tracking-tight">
-            Tienda Oriental
+            Dirección étnica
           </h1>
           <p className="text-xs text-muted-foreground">
-            Sistema de Punto de Venta
+            Municipal Maicao
           </p>
         </div>
       </div>
@@ -48,7 +49,7 @@ export default function NotFoundPage() {
       {/* Acciones */}
       <div className="flex flex-col sm:flex-row gap-3">
         <Button asChild size="lg" className="gap-2">
-          <Link to="/auth">
+          <Link to="/">
             <Home className="w-4 h-4" />
             Ir al inicio
           </Link>
@@ -59,7 +60,7 @@ export default function NotFoundPage() {
           size="lg"
           className="gap-2 bg-transparent"
         >
-          <Link to="/auth">
+          <Link to="/">
             <ArrowLeft className="w-4 h-4" />
             Volver atrás
           </Link>
@@ -76,7 +77,7 @@ export default function NotFoundPage() {
       {/* Footer */}
       <div className="absolute bottom-8 text-center">
         <p className="text-xs text-muted-foreground">
-          © 2025 Tienda Oriental • Versión 1.0.0
+          © 2025 SDS - DIRECCIÓN ÉTNICA MUNICIPAL-1330. Todos los derechos reservados.
         </p>
       </div>
     </div>

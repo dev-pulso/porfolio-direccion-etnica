@@ -38,7 +38,7 @@ export const AppRouter = () => {
               <NosotrosPage />
             </Suspense>
           } />
-          <Route path="/noticias" element={
+          <Route path="/noticias/:id" element={
             <Suspense fallback={<Loading />}>
               <NoticiasPage />
             </Suspense>
@@ -47,14 +47,12 @@ export const AppRouter = () => {
             <Suspense fallback={<Loading />}>
               <GaleriaPage />
             </Suspense>
-          }>
-            <Route path="/galerias/:id" element={
-              <Suspense fallback={<Loading />}>
-                <GaleriaDetallePage />
-              </Suspense>
-            } />
-
-          </Route>
+          } />
+          <Route path="/galerias/:id" element={
+            <Suspense fallback={<Loading />}>
+              <GaleriaDetallePage />
+            </Suspense>
+          } />
         </Route>
         <Route path="*" element={<NotFoundPage />}></Route>
       </Routes>

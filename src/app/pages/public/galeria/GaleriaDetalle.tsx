@@ -5,13 +5,9 @@ import { Button } from "@/components/ui/button"
 import { getStorageUrl } from "@/lib/storage"
 import { ArrowLeft, Calendar, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { useState, useEffect } from "react"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 
-interface GalleryDetailPageProps {
-    params: Promise<{
-        id: string
-    }>
-}
+
 
 export default function GalleryDetailPage() {
     const [gallery, setGallery] = useState<Galeria | null>(null)
@@ -19,14 +15,15 @@ export default function GalleryDetailPage() {
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
     const [galleryId, setGalleryId] = useState<string | null>(null)
 
-    const params = useParams()
+    const { id } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const resolveParams = async () => {
-            setGalleryId(params.id ?? '')
+        if (typeof window !== 'undefined') {
+            const idGallery = parseInt(id ?? '')
+            setGalleryId(idGallery.toString())
         }
-        resolveParams()
-    }, [params])
+    }, [id])
 
     useEffect(() => {
         if (!galleryId) return
@@ -58,7 +55,7 @@ export default function GalleryDetailPage() {
     }
 
     const handleBackToGalleries = () => {
-        window.location.href = "/galerias"
+        navigate("/galerias")
     }
 
     if (loading) {
