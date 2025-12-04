@@ -107,7 +107,7 @@ export function Footer() {
                     </div>
 
                     {/* Social Media */}
-                    <div>
+                    {/* <div>
                         <h3 className="text-lg font-bold mb-4">Síguenos</h3>
                         <div className="flex gap-4">
                             <a href="#" className="hover:text-accent transition-colors" aria-label="Facebook">
@@ -117,7 +117,7 @@ export function Footer() {
                                 <Instagram className="h-6 w-6" />
                             </a>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-secondary-foreground/20 text-center text-sm">
