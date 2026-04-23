@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-import Logo from "@/assets/image/logo.png";
 import {
   InputGroup,
   InputGroupAddon,

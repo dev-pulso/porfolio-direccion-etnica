@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) TODO lo que empiece por /admin lo maneja el .htaccess de /admin
+  RewriteCond %{REQUEST_URI} ^/admin/ [NC]
+  RewriteRule ^ - [L]
+
+  # 2) SPA React en la raíz (/)
+  RewriteBase /
+
+  # No reescribir archivos ni directorios reales
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Todo lo demás -> index.html del portafolio
+  RewriteRule . /index.html [L]
+</IfModule>

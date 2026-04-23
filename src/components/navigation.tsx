@@ -4,8 +4,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { Link } from "react-router"
-import { Avatar } from "@radix-ui/react-avatar"
-import { AvatarFallback, AvatarImage } from "./ui/avatar"
 import Logo from '@public/logo.png'
 
 export function Navigation() {

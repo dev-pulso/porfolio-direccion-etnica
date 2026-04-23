@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Mail, Phone, MapPin, Facebook, Instagram } from 'lucide-react'
+import { Mail, Phone, MapPin } from 'lucide-react'
 import { empresaApi, type Empresa } from '@/api/empresa'
 
 export function Footer() {
