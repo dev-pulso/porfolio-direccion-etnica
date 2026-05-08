@@ -23,11 +23,17 @@ export interface CertificadoRequest {
     numero_documento: string;
     clan_id: number;
     formato_id: number;
+    // Campos adicionales para Registro Civil (formato_id === 6)
+    nombre_menor?: string;
+    fecha_nacimiento?: string;
+    tipo_documento_padre_id?: number;
+    numero_documento_padre?: string;
 }
 
 export interface VerificarRequest {
     tipo_documento_id: number;
     numero_documento: string;
+    formato_id?: number;
     clan_id: number;
 }
 
@@ -99,11 +105,12 @@ export const certificadosApi = {
     // Verificar si el miembro existe en el SIIM
     verificarMiembro: async (body: VerificarRequest): Promise<VerificarResponse> => {
         try {
-            const requestData = {
+            const requestData: Record<string, unknown> = {
                 tipo_documento_id: body.tipo_documento_id,
                 documento: body.numero_documento,
                 clan_id: body.clan_id,
             };
+            if (body.formato_id) requestData.formato_id = body.formato_id;
 
             const response = await apiClient.post<VerificarResponse>('/certificados/verificar', requestData);
             return response;
@@ -121,12 +128,17 @@ export const certificadosApi = {
     // Generar y obtener certificado en PDF
     generarCertificado: async (body: CertificadoRequest): Promise<CertificadoResponse> => {
         try {
-            const requestData = {
+            const requestData: Record<string, unknown> = {
                 tipo_documento_id: body.tipo_documento_id,
                 documento: body.numero_documento,
                 formato_id: body.formato_id,
                 clan_id: body.clan_id,
             };
+
+            if (body.nombre_menor) requestData.nombre_menor = body.nombre_menor;
+            if (body.fecha_nacimiento) requestData.fecha_nacimiento = body.fecha_nacimiento;
+            if (body.tipo_documento_padre_id) requestData.tipo_documento_padre_id = body.tipo_documento_padre_id;
+            if (body.numero_documento_padre) requestData.numero_documento_padre = body.numero_documento_padre;
 
             // Hacer la petición para obtener el PDF como blob
             const response = await fetch(`${apiClient['baseURL']}/certificados/generar`, {
